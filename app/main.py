@@ -1,17 +1,18 @@
-# app/main.py
-
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, conint
 import joblib
 import numpy as np
 
-# Charger le modèle
 modele = joblib.load("app/rf_depression.pkl")
 
 app = FastAPI()
 
 class InputData(BaseModel):
-    features: list  # liste de 0/1
+    features: list[conint(ge=0, le=1)]  # liste de 0/1 validée
+
+@app.get("/")
+def read_root():
+    return {"message": "API opérationnelle"}
 
 @app.post("/predict")
 def predict(data: InputData):

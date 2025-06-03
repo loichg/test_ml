@@ -3,4 +3,5 @@ uvicorn
 scikit-learn
 joblib
 numpy
+imbalanced-learn
 jinja2

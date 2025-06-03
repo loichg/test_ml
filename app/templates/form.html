@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prédiction Dépression</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+        .container { background: white; padding: 30px; max-width: 600px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input[type=text] { width: 100%; padding: 10px; margin: 10px 0; }
+        input[type=submit] { background: #007bff; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        input[type=submit]:hover { background: #0056b3; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Formulaire de prédiction</h2>
+    <form method="post" action="/predict-form">
+        <label>Entrez une liste de 0/1 séparés par des virgules :</label>
+        <input type="text" name="features" placeholder="Ex: 1,0,1,0,1" value="{{ input or '' }}">
+        <input type="submit" value="Prédire">
+    </form>
+
+    {% if prediction is defined %}
+        <div class="result">
+            Prédiction : <strong>{{ prediction }}</strong><br>
+            Probabilité : <strong>{{ proba }}</strong>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+</div>
+</body>
+</html>

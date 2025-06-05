@@ -11,12 +11,22 @@
             <label>{{ var }}:</label>
             <input type="number" name="{{ var }}" min="0" max="1" required><br>
         {% endfor %}
-        
-        <h3>Variables continues (entre 0 et 1)</h3>
-        {% for var in ['sommeil_continu', 'cigarette_continu', 'sport_continu', 'imc', 'temps_travail_continu'] %}
-            <label>{{ var }}:</label>
-            <input type="number" name="{{ var }}" step="any" min="0" max="1" required><br>
-        {% endfor %}
+
+        <h3>Variables continues</h3>
+        <label>sommeil (heures/jour, entre 4 et 9.99) :</label>
+        <input type="text" name="sommeil_continu" required><br>
+
+        <label>cigarettes / jour (max 40) :</label>
+        <input type="text" name="cigarette_continu" required><br>
+
+        <label>sport (minutes/semaine, max 450) :</label>
+        <input type="text" name="sport_continu" required><br>
+
+        <label>IMC (entre 18.5 et 39.9) :</label>
+        <input type="text" name="imc" required><br>
+
+        <label>temps de travail (heures/jour, max 16) :</label>
+        <input type="text" name="temps_travail_continu" required><br>
 
         <button type="submit">Prédire</button>
     </form>
